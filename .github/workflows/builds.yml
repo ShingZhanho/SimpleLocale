@@ -1,0 +1,38 @@
+# This yaml document defines actios for building project on
+# Windows, macOS and Ubuntu
+
+name: Build
+
+on: [push]
+
+jobs:
+  build-ubuntu:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore packages
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+  
+
+  build-windows:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore packages
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
