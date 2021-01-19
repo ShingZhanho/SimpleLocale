@@ -1,0 +1,27 @@
+# This script is for uploading code coverage report to codecov
+
+name: Code Coverage
+
+on: [ push ]
+
+jobs:
+  upload-report:
+    
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Install packages
+      runs: dotnet restore
+    - name: Install OpenCover.Portable
+      runs: choco install opencover.portable
+    - name: Install codecov
+      runs: choco install codecov
+    - name: Run test and generate report
+      runs: OpenCover.Console.exe -register -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test -filter:"+[SimpleLocale*]* -[SimpleLocaleTest*]*" -output:".\CodeCoverageReport.xml" -oldstyle
+    - name: Upload report
+      runs: codecov.exe -f "./Code_Coverage.xml"
