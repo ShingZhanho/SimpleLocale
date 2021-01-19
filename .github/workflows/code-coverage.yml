@@ -24,4 +24,4 @@ jobs:
     - name: Run test and generate report
       run: OpenCover.Console.exe -register -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test -filter:"+[SimpleLocale*]* -[SimpleLocaleTest*]*" -output:".\CodeCoverageReport.xml" -oldstyle
     - name: Upload report
-      run: codecov.exe -f "./Code_Coverage.xml"
+      run: codecov.exe -f "./CodeCoverageReport.xml"
