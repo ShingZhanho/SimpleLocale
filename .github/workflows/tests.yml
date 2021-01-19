@@ -1,0 +1,53 @@
+# This script defines test actions for the project
+
+name: Tests
+
+on: [ push ]
+
+jobs:
+  test-ubuntu:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore packages
+      run: dotnet restore
+    - name: Test
+      run: dotnet test --no-restore
+
+
+  test-windows:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore packages
+      run: dotnet restore
+    - name: Test
+      run: dotnet test --no-restore
+
+
+  test-macos:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore packages
+      run: dotnet restore
+    - name: Test
+      run: dotnet test --no-restore

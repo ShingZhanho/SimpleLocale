@@ -22,6 +22,6 @@ jobs:
     - name: Install codecov
       run: choco install codecov
     - name: Run test and generate report
-      run: OpenCover.Console.exe -register -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test -filter:"+[SimpleLocale*]* -[SimpleLocaleTest*]*" -output:".\CodeCoverageReport.xml" -oldstyle
+      run: OpenCover.Console.exe -register -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test --no-restore" -filter:"+[SimpleLocale*]* -[SimpleLocaleTest*]*" -output:".\CodeCoverageReport.xml" -oldstyle
     - name: Upload report
       run: codecov.exe -f "./CodeCoverageReport.xml"
